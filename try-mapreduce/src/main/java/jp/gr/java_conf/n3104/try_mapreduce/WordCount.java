@@ -22,7 +22,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
  * <p>
  * 動作確認を目的としています。このクラスをJavaアプリケーションとしてEclipse上で実行して、
  * 「target/test/jp/gr/java_conf/n3104/try_mapreduce/WordCount」に
- * 「part-r-00000」というファイルが出力されば動作確認完了になります。
+ * 「part-r-00000」というファイルが出力されていれば動作確認完了になります。
  * 「part-r-00000」は「src/main/resources」ソースフォルダ内の「jp.gr.java_conf.n3104.try_mapreduce」パッケージ内の
  * 「hadoop-README.txt」をワードカウントした結果のファイルです。
  * </p>
