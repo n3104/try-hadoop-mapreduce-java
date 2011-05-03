@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
-import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
@@ -90,7 +89,7 @@ public class WordCountOld extends Configured implements Tool {
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています
 		FileUtil.fullyDelete(new File(out));
 
-		int res = ToolRunner.run(new Configuration(), new WordCountOld(), args);
+		int res = ToolRunner.run(new WordCountOld(), args);
 		System.exit(res);
 	}
 
