@@ -11,7 +11,7 @@ http://try-hadoop-mapreduce-java.googlecode.com/svn/trunk/ から
 
 == 動作確認 ==
 
-「try-mapreduce」Javaプロジェクトの「src/main/java」ソールフォルダ内にある、「jp.gr.java_conf.n3104.try_mapreduce.WordCount」クラスをJavaアプリケーションとして実行して下さい。実行中に例外が発生せずにプログラムが終了したことを確認し、「target/test/jp/gr/java_conf/n3104/try_mapreduce/WordCount」フォルダ内に「part-r-00000」というファイルが出力されていれば動作確認完了になります。
+「try-mapreduce」Javaプロジェクトの「src/main/java」ソールフォルダ内にある、「jp.gr.java_conf.n3104.try_mapreduce.WordCountNew」クラスをJavaアプリケーションとして実行して下さい。実行中に例外が発生せずにプログラムが終了したことを確認し、「target/test/jp/gr/java_conf/n3104/try_mapreduce/WordCountNew」フォルダ内に「part-r-00000」というファイルが出力されていれば動作確認完了になります。
 
 = Windowsの場合 =
 
