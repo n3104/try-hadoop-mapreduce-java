@@ -2,6 +2,8 @@
 <classpath>
 	<classpathentry kind="src" output="target/classes" path="src/main/java"/>
 	<classpathentry excluding="**/*.java" kind="src" output="target/classes" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="lib/hadoop-0.20.2-core.jar" sourcepath="lib/hadoop-0.20.2-core-sources.jar"/>
 	<classpathentry kind="lib" path="lib/hadoop-0.20.2-examples.jar" sourcepath="lib/hadoop-0.20.2-examples-sources.jar"/>
@@ -32,5 +34,6 @@
 	<classpathentry kind="lib" path="lib/lib/xmlenc-0.52.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jsp-2.1/jsp-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jsp-2.1/jsp-api-2.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
