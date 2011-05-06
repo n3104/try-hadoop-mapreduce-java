@@ -20,6 +20,7 @@ import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.mapred.lib.HashPartitioner;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
@@ -28,7 +29,7 @@ import org.apache.hadoop.util.ToolRunner;
  * 
  * @author n3104
  */
-public class SortByAge extends Configured implements Tool {
+public class SortByAgeUsingHashPartitioner extends Configured implements Tool {
 
 	public static class SortByAgeMapper extends MapReduceBase implements
 			Mapper<Object, Text, IntWritable, Text> {
@@ -84,19 +85,21 @@ public class SortByAge extends Configured implements Tool {
 		conf.setOutputValueClass(Text.class);
 		FileInputFormat.addInputPath(conf, new Path(args[0]));
 		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
+		// HashPartitionerを利用
+		conf.setPartitionerClass(HashPartitioner.class);
 		JobClient.runJob(conf);
 		return 0;
 	}
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = SortByAge.class.getResource("Employee.txt").getPath();
-		String out = Util.getJobOutputDirPath(SortByAge.class);
+		String in = SortByAgeUsingHashPartitioner.class.getResource("Employee.txt").getPath();
+		String out = Util.getJobOutputDirPath(SortByAgeUsingHashPartitioner.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています
 		FileUtil.fullyDelete(new File(out));
 
-		int res = ToolRunner.run(new SortByAge(), args);
+		int res = ToolRunner.run(new SortByAgeUsingHashPartitioner(), args);
 		System.exit(res);
 	}
 
