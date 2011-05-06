@@ -24,7 +24,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Employee.txt の平均年齢を求めます。
+ * 従業員ファイルから平均年齢を求めます。
  * 
  * @author n3104
  */
@@ -78,7 +78,7 @@ public class AverageAgeOfEmployee extends Configured implements Tool {
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = AverageAgeOfEmployee.class.getResource("Employee.txt").getPath();
+		String in = "input/Employee";
 		String out = Util.getJobOutputDirPath(AverageAgeOfEmployee.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています

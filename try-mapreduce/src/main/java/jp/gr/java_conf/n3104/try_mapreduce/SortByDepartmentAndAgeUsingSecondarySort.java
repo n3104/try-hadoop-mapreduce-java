@@ -25,7 +25,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Employee.txt を部門と年齢でソートします。
+ * 従業員ファイルを部門と年齢でソートします。
  * <p>
  * Mapper のキーを {@code demartmentId} と {@code age} の複合キーにして、
  * シャッフル時の Secondary Sort を利用してソートしています。
@@ -98,8 +98,7 @@ public class SortByDepartmentAndAgeUsingSecondarySort extends Configured impleme
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = SortByDepartmentAndAgeUsingSecondarySort.class.getResource("Employee.txt")
-				.getPath();
+		String in = "input/Employee";
 		String out = Util.getJobOutputDirPath(SortByDepartmentAndAgeUsingSecondarySort.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています

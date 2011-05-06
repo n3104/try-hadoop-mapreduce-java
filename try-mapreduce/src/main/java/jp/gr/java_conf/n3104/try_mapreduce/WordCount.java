@@ -23,8 +23,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
  * 動作確認を目的としています。このクラスをJavaアプリケーションとしてEclipse上で実行して、
  * 「target/test/jp/gr/java_conf/n3104/try_mapreduce/WordCount」に
  * 「part-r-00000」というファイルが出力されていれば動作確認完了になります。
- * 「part-r-00000」は「src/main/resources」ソースフォルダ内の「jp.gr.java_conf.n3104.try_mapreduce」パッケージ内の
- * 「hadoop-README.txt」をワードカウントした結果のファイルです。
+ * 「part-r-00000」は「input/WordCount」フォルダ内の「text1.txt」と「text2.txt」に含まれる単語数を集計したファイルです。
  * </p>
  * 
  * @author n3104
@@ -62,7 +61,7 @@ public class WordCount {
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = WordCount.class.getResource("hadoop-README.txt").getPath();
+		String in = "input/WordCount";
 		String out = Util.getJobOutputDirPath(WordCount.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています

@@ -5,7 +5,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.io.Text;
 
 /**
- * Employee.txt を解析します。
+ * 従業員ファイルを解析します。
  * 
  * @author n3104
  */

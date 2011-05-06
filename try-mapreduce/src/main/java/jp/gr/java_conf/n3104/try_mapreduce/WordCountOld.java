@@ -83,7 +83,7 @@ public class WordCountOld extends Configured implements Tool {
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = WordCountOld.class.getResource("hadoop-README.txt").getPath();
+		String in = "input/WordCount";
 		String out = Util.getJobOutputDirPath(WordCountOld.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています

@@ -26,7 +26,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Employee.txt を部門と年齢でソートします。
+ * 従業員ファイルを部門と年齢でソートします。
  * <p>
  * Mapper のキーを {@code demartmentId} にして部門単位でまずソートし、
  * Reducer 内で {@link Comparator} を利用して年齢でソートしています。
@@ -95,8 +95,7 @@ public class SortByDepartmentAndAgeUsingComparator extends Configured implements
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = SortByDepartmentAndAgeUsingComparator.class.getResource("Employee.txt")
-				.getPath();
+		String in = "input/Employee";
 		String out = Util.getJobOutputDirPath(SortByDepartmentAndAgeUsingComparator.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています
