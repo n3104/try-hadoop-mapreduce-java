@@ -25,7 +25,7 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Employee.txt を年齢順にソートします。
+ * 従業員ファイルを年齢順にソートします。
  * 
  * @author n3104
  */
@@ -93,7 +93,7 @@ public class SortByAgeUsingHashPartitioner extends Configured implements Tool {
 
 	public static void main(String[] args) throws Exception {
 		// 引数を固定で設定
-		String in = SortByAgeUsingHashPartitioner.class.getResource("Employee.txt").getPath();
+		String in = "input/Employee";
 		String out = Util.getJobOutputDirPath(SortByAgeUsingHashPartitioner.class);
 		args = new String[] { in, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています
