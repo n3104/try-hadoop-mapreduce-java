@@ -27,7 +27,7 @@ import org.apache.hadoop.util.ToolRunner;
 /**
  * 従業員ファイルを部門と年齢でソートします。
  * <p>
- * Mapper のキーを {@code demartmentId} と {@code age} の複合キーにして、
+ * Mapper のキーを {@code demartmentId} と {@code employeeAge} の複合キーにして、
  * シャッフル時の Secondary Sort を利用してソートしています。
  * </p>
  * 
@@ -45,7 +45,7 @@ public class SortByDepartmentAndAgeUsingSecondarySort extends Configured impleme
 				Reporter reporter) throws IOException {
 			parser.parse(value);
 			IntPair intPair = new IntPair();
-			intPair.set(parser.getDepartmentId(), parser.getAge());
+			intPair.set(parser.getDepartmentId(), parser.getEmployeeAge());
 			output.collect(intPair, value);
 		}
 	}

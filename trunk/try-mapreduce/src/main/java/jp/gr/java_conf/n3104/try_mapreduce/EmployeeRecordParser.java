@@ -14,9 +14,9 @@ public class EmployeeRecordParser {
 	private static final Log log = LogFactory.getLog(EmployeeRecordParser.class);
 
 	private int employeeId;
-	private String name;
-	private int age;
-	private int salary;
+	private String employeeName;
+	private int employeeAge;
+	private int employeeSalary;
 	private int departmentId;
 	private boolean isValid;
 
@@ -30,9 +30,9 @@ public class EmployeeRecordParser {
 			}
 			int i = 0;
 			employeeId = Integer.parseInt(values[i++]);
-			name = values[i++];
-			age = Integer.parseInt(values[i++]);
-			salary = Integer.parseInt(values[i++]);
+			employeeName = values[i++];
+			employeeAge = Integer.parseInt(values[i++]);
+			employeeSalary = Integer.parseInt(values[i++]);
 			departmentId = Integer.parseInt(values[i++]);
 			isValid = true;
 		} catch (Exception e) {
@@ -46,9 +46,9 @@ public class EmployeeRecordParser {
 
 	private void init() {
 		employeeId = 0;
-		name = null;
-		age = 0;
-		salary = 0;
+		employeeName = null;
+		employeeAge = 0;
+		employeeSalary = 0;
 		departmentId = 0;
 		isValid = false;
 	}
@@ -57,16 +57,16 @@ public class EmployeeRecordParser {
 		return employeeId;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmployeeName() {
+		return employeeName;
 	}
 
-	public int getAge() {
-		return age;
+	public int getEmployeeAge() {
+		return employeeAge;
 	}
 
-	public int getSalary() {
-		return salary;
+	public int getEmployeeSalary() {
+		return employeeSalary;
 	}
 
 	public int getDepartmentId() {

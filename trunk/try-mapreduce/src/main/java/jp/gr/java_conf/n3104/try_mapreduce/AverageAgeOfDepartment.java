@@ -40,7 +40,7 @@ public class AverageAgeOfDepartment extends Configured implements Tool {
 				Reporter reporter) throws IOException {
 			parser.parse(value);
 			output.collect(new IntWritable(parser.getDepartmentId()),
-					new IntWritable(parser.getAge()));
+					new IntWritable(parser.getEmployeeAge()));
 		}
 	}
 

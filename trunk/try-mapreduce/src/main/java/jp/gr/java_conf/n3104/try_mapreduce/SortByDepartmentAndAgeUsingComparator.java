@@ -70,7 +70,7 @@ public class SortByDepartmentAndAgeUsingComparator extends Configured implements
 				public int compare(Text o1, Text o2) {
 					parser1.parse(o1);
 					parser2.parse(o2);
-					return Integer.valueOf(parser1.getAge()).compareTo(parser2.getAge());
+					return Integer.valueOf(parser1.getEmployeeAge()).compareTo(parser2.getEmployeeAge());
 				}
 
 			});
