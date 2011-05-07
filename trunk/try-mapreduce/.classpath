@@ -34,6 +34,7 @@
 	<classpathentry kind="lib" path="lib/lib/xmlenc-0.52.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jsp-2.1/jsp-2.1.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jsp-2.1/jsp-api-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/ext/commons-io-2.0.1.jar" sourcepath="lib/ext/commons-io-2.0.1-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
