@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 
+import jp.gr.java_conf.n3104.try_mapreduce.SortByDeptAndAgeUsingSecondarySort.FirstPartitioner;
+
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.examples.SecondarySort.FirstGroupingComparator;
 import org.apache.hadoop.examples.SecondarySort.IntPair;
@@ -17,7 +19,6 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Partitioner;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapred.TextInputFormat;
@@ -30,7 +31,7 @@ import org.apache.hadoop.util.ToolRunner;
  * 
  * @author n3104
  */
-public class JoinWithDepartmentName extends Configured implements Tool {
+public class JoinWithDeptNameUsingReduceSideJoin extends Configured implements Tool {
 
 	public static class EmployeeMapper extends MapReduceBase implements
 			Mapper<Object, Text, IntPair, Text> {
@@ -81,18 +82,6 @@ public class JoinWithDepartmentName extends Configured implements Tool {
 		}
 	}
 
-	public static class FirstPartitioner implements Partitioner<IntPair, Text> {
-
-		@Override
-		public void configure(JobConf job) {
-		}
-
-		@Override
-		public int getPartition(IntPair key, Text value, int numPartitions) {
-			return Math.abs(key.getFirst() * 127) % numPartitions;
-		}
-	}
-
 	@Override
 	public int run(String[] args) throws Exception {
 		JobConf conf = new JobConf(getConf(), getClass());
@@ -119,12 +108,12 @@ public class JoinWithDepartmentName extends Configured implements Tool {
 		// 引数を固定で設定
 		String employee = "input/Employee";
 		String department = "input/Department";
-		String out = Util.getJobOutputDirPath(JoinWithDepartmentName.class);
+		String out = Util.getJobOutputDirPath(JoinWithDeptNameUsingReduceSideJoin.class);
 		args = new String[] { employee, department, out };
 		// 出力先のディレクトリが存在するとFileAlreadyExistsExceptionとなるため事前に削除しています
 		FileUtil.fullyDelete(new File(out));
 
-		int res = ToolRunner.run(new JoinWithDepartmentName(), args);
+		int res = ToolRunner.run(new JoinWithDeptNameUsingReduceSideJoin(), args);
 		System.exit(res);
 	}
 
