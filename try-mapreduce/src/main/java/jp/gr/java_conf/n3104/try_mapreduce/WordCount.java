@@ -21,8 +21,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
  * 引数を固定にして簡単に実行出来るようにしたものです。
  * <p>
  * 動作確認を目的としています。このクラスをJavaアプリケーションとしてEclipse上で実行して、
- * 「target/test/jp/gr/java_conf/n3104/try_mapreduce/WordCount」に
- * 「part-r-00000」というファイルが出力されていれば動作確認完了になります。
+ * 「target/output/WordCount」に「part-r-00000」というファイルが出力されていれば動作確認完了になります。
  * 「part-r-00000」は「input/WordCount」フォルダ内の「text1.txt」と「text2.txt」に含まれる単語数を集計したファイルです。
  * </p>
  * 
