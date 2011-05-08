@@ -1,8 +1,8 @@
 #summary 環境構築手順です。
 
-<wiki:toc max_depth="2" />
-
 MacとWindowsで分けて記述しています。MacであればJDKとEclipseをインストール済みであれば、ソースをチェックアウトするだけで環境構築が出来ます。Windowsの場合は追加でCygwinのインストールが必要になります。なお、気軽に試すことを重視しているため、Mavenは利用していません。
+
+<wiki:toc max_depth="2" />
 
 ----
 
