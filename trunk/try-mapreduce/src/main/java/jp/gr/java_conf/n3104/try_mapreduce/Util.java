@@ -20,8 +20,7 @@ public class Util {
 	 * @return ジョブの出力結果ディレクトリのパス
 	 */
 	public static String getJobOutputDirPath(Class<?> clazz) {
-		String packagePath = clazz.getPackage().getName().replace('.', '/');
-		return "target/test/" + packagePath + "/" + clazz.getSimpleName();
+		return "target/output/" + clazz.getSimpleName();
 
 	}
 

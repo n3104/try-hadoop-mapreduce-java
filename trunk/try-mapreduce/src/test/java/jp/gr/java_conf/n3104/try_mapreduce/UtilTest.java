@@ -9,9 +9,8 @@ public class UtilTest {
 
 	@Test
 	public void getJobOutputDirPath() throws Exception {
-		assertThat(Util.getJobOutputDirPath(UtilTest.class),
-				is("target/test/jp/gr/java_conf/n3104/try_mapreduce/UtilTest"));
-		assertThat(Util.getJobOutputDirPath(String.class), is("target/test/java/lang/String"));
+		assertThat(Util.getJobOutputDirPath(UtilTest.class), is("target/output/UtilTest"));
+		assertThat(Util.getJobOutputDirPath(String.class), is("target/output/String"));
 	}
 
 	@Test
