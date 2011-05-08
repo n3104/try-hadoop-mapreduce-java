@@ -24,6 +24,10 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 従業員ファイルと部門ファイルをマージします。
+ * <p>
+ * 単一の MapReduce プログラムで同時に複数の種類の Mapper を利用する {@link MultipleInputs} のサンプルです。
+ * 複数の種類の Mapper の出力をキーでまとめて単一の種類の Reducer で処理することが出来ます。
+ * </p>
  * 
  * @author n3104
  */

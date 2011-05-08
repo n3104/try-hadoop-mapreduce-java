@@ -25,6 +25,12 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 従業員ファイルから平均年齢を求めます。
+ * <p>
+ * Mapper 側で指定した key が同じ場合、 Reducer 側で values に値がまとめられていることを
+ * 再確認することを目的としています。今回は従業員全体の平均年齢であるため、
+ * key を単一にしています。そのため、 Reducer 側では単一の values に全従業員の年齢が入っています。
+ * （key が単一であるため、 reduce メソッドは1回のみ呼び出されます。）
+ * </p>
  * 
  * @author n3104
  */
@@ -65,6 +71,7 @@ public class AverageAgeOfEmployee extends Configured implements Tool {
 	public int run(String[] args) throws Exception {
 		JobConf conf = new JobConf(getConf(), getClass());
 		conf.setMapperClass(AverageAgeMapper.class);
+		// ReducerとKeyおよびValueの型が異なる場合はMapperについても型を指定する必要があります。
 		conf.setMapOutputKeyClass(IntWritable.class);
 		conf.setMapOutputValueClass(IntWritable.class);
 		conf.setReducerClass(AverageAgeReducer.class);

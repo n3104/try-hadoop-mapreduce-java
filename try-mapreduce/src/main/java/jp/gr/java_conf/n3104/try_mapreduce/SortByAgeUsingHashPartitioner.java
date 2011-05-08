@@ -8,6 +8,7 @@ import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
@@ -26,6 +27,26 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 従業員ファイルを年齢順にソートします。
+ * <p>
+ * MapReduce プログラムは Mapper の出力が key によってソートされ、
+ * Reducer の入力として渡されるという仕様になっています
+ * （このソート処理のことを shuffle と言います）。
+ * このプログラムでは、 shuffle によって従業員の年齢がソートされ、
+ * Reducer の values に設定されていることを確認しています。
+ * </p>
+ * <p>
+ * ソートには部分ソートと全体ソートの2種類があります。
+ * 部分ソートとは Reducer 単位ではソートされていても、
+ * 出力ファイル全体としてはソートされていないものを指します。
+ * このプログラムは部分ソートのサンプルであり、
+ * 全体ソートのサンプルは {@link SortByAgeUsingTotalOrderPartitioner} になります。
+ * </p>
+ * <p>
+ * ソートは昇順ですが、降順にする際は独自の {@link WritableComparator} もしくは {@link RawComparator} を用意する必要があります。
+ * なお、 {@link RawComparator} はデータのデシリアライズが不要なため、
+ * パフォーマンス的に有利になります。 {@link WritableComparator} の場合は、
+ * デシリアライズした上で比較処理を書けるため、実装が簡単になります。
+ * </p>
  * 
  * @author n3104
  */

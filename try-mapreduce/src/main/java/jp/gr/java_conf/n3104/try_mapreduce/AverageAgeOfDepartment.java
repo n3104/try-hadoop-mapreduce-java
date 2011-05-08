@@ -25,6 +25,11 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 従業員ファイルから部門ごとの平均年齢を求めます。
+ * <p> {@link AverageAgeOfEmployee} では key が単一であるのに対して、
+ * 今回は {@code departmentId} が key になります。
+ * そのため、 Reducer 側では values に部門毎の従業員の年齢が入っています。
+ * （key が複数あるため、 reduce メソッドは複数回呼び出されます。）
+ * </p>
  * 
  * @author n3104
  */

@@ -27,7 +27,14 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * 従業員ファイルに部門名をジョインします。
+ * Reduce-Side Join アルゴリズムを利用して、従業員ファイルに部門名をジョインします。
+ * <p>
+ * Reduce-Side Join は {@link MultipleInputs} と Secondary Sort によって構成されています。 {@link MultipleInputs}
+ * を利用してジョインする複数の種類のファイルを入力として受け取り、
+ * Secondary Sort を利用して Reducer で受け取るデータの順番を制御します。
+ * このプログラムの場合は、 Reducer で受け取る values の先頭に部門名が来るようにして、
+ * それ以降の値は従業員レコードになるようにしています。
+ * </p>
  * 
  * @author n3104
  */
