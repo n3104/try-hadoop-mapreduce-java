@@ -22,6 +22,7 @@ import org.apache.hadoop.mapred.Mapper;
 import org.apache.hadoop.mapred.OutputCollector;
 import org.apache.hadoop.mapred.Reducer;
 import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.mapred.lib.HashPartitioner;
 import org.apache.hadoop.mapred.lib.InputSampler;
 import org.apache.hadoop.mapred.lib.TotalOrderPartitioner;
 import org.apache.hadoop.util.Tool;
@@ -29,6 +30,30 @@ import org.apache.hadoop.util.ToolRunner;
 
 /**
  * 従業員ファイルを年齢順にソートします。
+ * <p>
+ * 全体ソートのサンプルです。 Reducer の出力全体としてソートを行うには、
+ * 予め Mapper から Reducer に値を転送する際に全体としてソート出来るように
+ * Reducer 毎が受け持つ key の範囲を制御する必要があります。
+ * 例えば、Reducer1 は 1～100、 Reducer2 は 101～200、 Reducer3 は 201～300 のような制御です。
+ * この制御を行うのが {@link TotalOrderPartitioner} です。 {@link TotalOrderPartitioner} を利用することで
+ * 全体ソートを行うことが出来るようになります。
+ * <p>
+ * Partitioner とは Mapper の出力をどの Reducer に振り分けるか制御するクラスを指します。
+ * 部分のソートのサンプルである {@link SortByAgeUsingHashPartitioner} の場合は
+ * デフォルトの {@link HashPartitioner} を利用しています。
+ * この Partitioner は key のhash値に基づいて Reducer を決定する実装となっており、
+ * 全体ソートには利用できません。
+ * </p>
+ * <p> {@link TotalOrderPartitioner} を利用する際は、どの Reducer にどの key を割り当てるかの設定を
+ * 予め指定しておく必要があります。なお、実データを分析しなければ key の偏りは判別できないため、
+ * Hadoop では予めいくつかの {@link InputSampler} が用意されています。
+ * この {@link InputSampler} を利用して実データのサンプリングを行います。
+ * </p>
+ * <p> {@link InputSampler} 利用して作成したパーティション情報は Hadoop クラスタ上の
+ * 全 Mapper に転送される必要があります。その転送処理に利用するのが {@link DistributedCache} です。 {@link DistributedCache}
+ * を利用することで Hadoop クラスタ上の各タスクノードに
+ * 任意のファイルを転送することが出来ます。
+ * </p>
  * 
  * @author n3104
  */
@@ -88,8 +113,9 @@ public class SortByAgeUsingTotalOrderPartitioner extends Configured implements T
 		conf.setOutputValueClass(Text.class);
 		FileInputFormat.addInputPath(conf, new Path(args[0]));
 		FileOutputFormat.setOutputPath(conf, new Path(args[1]));
-		// TotalOrderPartitionerを利用
+		// TotalOrderPartitionerを利用して全体ソートを行います。
 		conf.setPartitionerClass(TotalOrderPartitioner.class);
+		// InputSamplerを利用してパーティション情報を生成します。
 		InputSampler.Sampler<IntWritable, Text> sampler = new InputSampler.RandomSampler<IntWritable, Text>(
 				0.1, 10000, 10);
 		Path input = FileInputFormat.getInputPaths(conf)[0];
@@ -97,6 +123,7 @@ public class SortByAgeUsingTotalOrderPartitioner extends Configured implements T
 		Path partitionFile = new Path(input, "_partitions");
 		TotalOrderPartitioner.setPartitionFile(conf, partitionFile);
 		InputSampler.writePartitionFile(conf, sampler);
+		// DistributedCacheを利用してパーティション情報をクラスタ全体に転送します。
 		URI partitionUri = new URI(partitionFile.toString() + "#_partitions");
 		DistributedCache.addCacheFile(partitionUri, conf);
 		DistributedCache.createSymlink(conf);

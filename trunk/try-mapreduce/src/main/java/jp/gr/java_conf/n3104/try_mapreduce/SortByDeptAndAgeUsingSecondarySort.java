@@ -10,7 +10,9 @@ import org.apache.hadoop.examples.SecondarySort.IntPair;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.RawComparator;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.mapred.FileInputFormat;
 import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;
@@ -28,7 +30,15 @@ import org.apache.hadoop.util.ToolRunner;
  * 従業員ファイルを部門と年齢でソートします。
  * <p>
  * Mapper のキーを {@code demartmentId} と {@code employeeAge} の複合キーにして、
- * シャッフル時の Secondary Sort を利用してソートしています。
+ * shuffle 時の Secondary Sort を利用してソートしています。
+ * </p>
+ * <p>
+ * Secondary Sort を利用する際は、以下の3つが必要になります。
+ * <ul>
+ * <li>複合キーの {@link WritableComparable} クラス
+ * <li>複合キーの先頭のキーのみでパーティショニングを行うための {@link Partitioner} クラス
+ * <li>複合キーの先頭のキーのみでグルーピングするための {@link RawComparator} クラス
+ * </ul>
  * </p>
  * 
  * @author n3104

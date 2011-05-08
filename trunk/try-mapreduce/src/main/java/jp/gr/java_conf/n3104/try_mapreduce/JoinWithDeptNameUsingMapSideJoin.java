@@ -23,7 +23,14 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
- * Map-Side Joinアルゴリズムを利用して、従業員ファイルに部門名をジョインします。
+ * Map-Side Join アルゴリズムを利用して、従業員ファイルに部門名をジョインします。
+ * <p>
+ * Reduce-Side Join を利用する際は、予めジョインするファイル間を同じキーでソートしておく必要があります。
+ * この事前準備を行っておけば {@link CompositeInputFormat} を利用することでファイルをジョインすることが出来ます。
+ * なお、このプログラムでは事前準備を行うため、ジョイン用のジョブの他に、
+ * 従業員ファイルと部門ファイルを {@code departmentId} でソートするジョブを実行しています。
+ * そのため、単一のプログラム内で3つの MapReduce ジョブを実行しています。
+ * </p>
  * 
  * @author n3104
  */
