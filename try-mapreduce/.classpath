@@ -16,7 +16,6 @@
 	<classpathentry kind="lib" path="lib/lib/commons-net-1.4.1.jar"/>
 	<classpathentry kind="lib" path="lib/lib/core-3.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/lib/hsqldb-1.8.0.10.jar"/>
-	<classpathentry kind="lib" path="lib/lib/hsqldb-1.8.0.10.LICENSE.txt"/>
 	<classpathentry kind="lib" path="lib/lib/jasper-compiler-5.5.12.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jasper-runtime-5.5.12.jar"/>
 	<classpathentry kind="lib" path="lib/lib/jets3t-0.6.1.jar"/>
@@ -24,7 +23,6 @@
 	<classpathentry kind="lib" path="lib/lib/jetty-util-6.1.14.jar"/>
 	<classpathentry kind="lib" path="lib/lib/junit-3.8.1.jar"/>
 	<classpathentry kind="lib" path="lib/lib/kfs-0.2.2.jar"/>
-	<classpathentry kind="lib" path="lib/lib/kfs-0.2.LICENSE.txt"/>
 	<classpathentry kind="lib" path="lib/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/lib/mockito-all-1.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/lib/oro-2.0.8.jar"/>
